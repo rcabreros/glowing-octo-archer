@@ -1,0 +1,11 @@
+*** Settings ***
+Suite Setup       Go To homepage
+Suite Teardown    Close All Browsers
+Library           Selenium2Library
+Resource          resource.txt
+Resource          testdata.txt
+
+*** Test Cases ***
+Putting Invalid Inputs
+    Input 5 Invalid Data
+    Verifying the 5 Invalid Data

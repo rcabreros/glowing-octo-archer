@@ -1,0 +1,23 @@
+*** Settings ***
+Suite Setup       Go To homepage
+Suite Teardown    Close All Browsers
+Library           Selenium2Library
+Resource          ../robotframework/testdata.txt
+Resource          ../robotframework/resource.txt
+
+*** Test Cases ***
+Checking data on page
+    Check Text on Page    ${text_1}
+    Check Text on Page    ${text_2}
+    Check Text on Page    ${text_3}
+    Check Button on Page    ${Xpath_button}    1
+    Check Radio Button on Page    ${radio_1}
+    Check Radio Button on Page    ${radio_2}
+    Check Elements on Page    ${Xpath_elem_1}    1
+    Check Elements on Page    ${Xpath_elem_2}    1
+    Go to Next Page
+    Checking the Men Sports
+    Change to Sports Women
+    Checking the Women Sports
+    Check Elements on Page    ${Xpath_button}    1
+    Check Elements on Page    ${Xpath_back}    1

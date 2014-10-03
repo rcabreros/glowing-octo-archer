@@ -1,0 +1,81 @@
+*** Keywords ***
+Go to homepage
+    Open Browser    ${url_home}    ${browser}
+
+Check Text on Page
+    [Arguments]    ${text}
+    Page Should Contain    ${text}
+
+Check Button on Page
+    [Arguments]    ${Xpath}    ${count}
+    Xpath Should Match X Times    ${Xpath}    ${count}
+
+Check Radio Button on Page
+    [Arguments]    ${radiobutton}
+    Page Should Contain Radio Button    ${radiobutton}
+
+Check Elements on Page
+    [Arguments]    ${Xpath}    ${count}
+    Xpath Should Match X Times    ${Xpath}    ${count}
+
+Go to Next Page
+    Input Text    ${Xpath_elem_1}    ryanc
+    Input Text    ${Xpath_elem_2}    5
+    Click Element    //*[@id="ss-form"]/ol/div[3]/div/div/ul/li[1]/label/span[2]
+    Click Button    ${Xpath_button}
+
+Check Checkbox on Page
+    [Arguments]    ${checkbox}
+    Page Should Contain Checkbox    ${checkbox}
+
+Change to Sports Women
+    Click Button    ${Xpath_back}
+    Click Element    //*[@id="ss-form"]/ol/div[3]/div/div/ul/li[2]/label/span[2]
+    Click Button    ${Xpath_button}
+
+Checking the Men Sports
+    Check Checkbox on Page    ${m_check_1}
+    Check Checkbox on Page    ${m_check_2}
+    Check Checkbox on Page    ${m_check_3}
+    Check Checkbox on Page    ${m_check_4}
+
+Checking the Women Sports
+    Check Checkbox on Page    ${f_check_1}
+    Check Checkbox on Page    ${f_check_2}
+    Check Checkbox on Page    ${f_check_3}
+    Check Checkbox on Page    ${f_check_4}
+
+Input 5 Valid Data
+    : FOR    ${ELEMENT}    IN    @{names}
+    \    Input Text    ${Xpath_elem_1}    ${ELEMENT}
+    \    Input Text    ${Xpath_elem_2}    5
+    \    Click Element    //*[@id="ss-form"]/ol/div[3]/div/div/ul/li[1]/label/span[2]
+    \    Click Button    ${Xpath_button}
+    \    Click Element    //span[.='Wrestling']
+    \    Click Button    ${Xpath_button}
+    \    Run Keyword If    '${ELEMENT}' == 'RyanC4'    Exit For Loop
+    \    Click Element    //a[@target='_self']
+
+Verifying the 5 Valid Data
+    Close All Browsers
+    Open Browser    ${url_response}
+    : FOR    ${ELEMENT}    IN    @{names}
+    \    Xpath Should Match X Times    //div[@id=':1.sc']//div[.='${ELEMENT}']    1
+
+Input 5 Invalid Data
+    :FOR    ${ELEMENT}    IN    @{invalid_names}
+    \    Input Text    ${Xpath_elem_1}    ${ELEMENT}
+    \    Input Text    ${Xpath_elem_2}    4
+    \    Click Element    //*[@id="ss-form"]/ol/div[3]/div/div/ul/li[1]/label/span[2]
+    \    Click Button    ${Xpath_button}
+    \    Click Element    //span[.='Wrestling']
+    \    Click Button    ${Xpath_button}
+    \    Run Keyword If    '${ELEMENT}' == 'RyanC4_XX'    Exit For Loop
+    \    Click Element    //a[@target='_self']
+
+Verifying the 5 Invalid Data
+    Close All Browsers
+    Open Browser    ${url_response}
+    Xpath Should Match X Times    //div[@id=':2.sc']//div[.='4']    0
+    :FOR    ${ELEMENT}    IN    @{invalid_names}
+    \    Xpath Should Match X Times    //div[@id=':1.sc']//div[.='${ELEMENT}']    0

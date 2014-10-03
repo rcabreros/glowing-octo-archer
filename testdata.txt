@@ -1,0 +1,23 @@
+*** Variables ***
+${url_home}       http://goo.gl/JJMQLm
+${browser}        ff
+${text_1}         Name
+${text_2}         Age
+${text_3}         Gender
+${Xpath_button}    //*[@id="ss-submit"]
+${radio_1}        Male
+${radio_2}        Female
+${Xpath_elem_1}    //*[@id="entry_1563791636"]
+${Xpath_elem_2}    //*[@id="entry_930637752"]
+${m_check_1}      Basketball
+${m_check_2}      Wrestling
+${m_check_3}      Running
+${m_check_4}      MMA
+${f_check_1}      Volleyball
+${f_check_2}      Swimming
+${f_check_3}      Running
+${f_check_4}      Gymnastics
+${Xpath_back}     //*[@id="ss-back-button"]
+${url_response}    http://goo.gl/ZnYr0f
+@{names}          RyanC    RyanC1    RyanC2    RyanC3    RyanC4
+@{invalid_names}    RyanC_XX    RyanC1_XX    RyanC2_XX    RyanC3_XX    RyanC4_XX
